@@ -1,14 +1,19 @@
-//import styles from './App.module.css';
+import AddToDo from './components/AddToDo'
 import Todos from './components/Todos'
-import { v4 as uuid } from 'uuid';
-import todo from './models/todo'
+//import { v4 as uuid } from 'uuid';
+import store from './store/ToDoStore'
+import { Provider } from 'react-redux'
 
 function App() {
   
-  const todos: todo[] = [{label:"Gym", id:uuid()}, {label:"Eat Food", id:uuid()}]
+
 
   return (
-    <Todos todos={todos}/>
+    <Provider store={store}>
+      <AddToDo />
+      <Todos/>
+    </Provider>
+    
   );
 }
 
