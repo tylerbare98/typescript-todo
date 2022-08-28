@@ -12,9 +12,12 @@ function ToDoList(state = initial, action) {
             list: [...state.list, {label: action.label, id: action.id}]   
         }
     case 'RemoveToDo':
-      return state
+        const updatedList = state.list.filter((item) => item.id !== action.id);
+        return {
+            list: updatedList
+        }
     default:
-      return state
+        return state
   }
 }
 
