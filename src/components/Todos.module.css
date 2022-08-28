@@ -1,0 +1,8 @@
+.mouse{
+    cursor:move;
+}
+
+.over{
+    border: 3px dotted #666;
+
+}

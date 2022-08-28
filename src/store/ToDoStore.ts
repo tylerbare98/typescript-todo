@@ -16,6 +16,10 @@ function ToDoList(state = initial, action) {
         return {
             list: updatedList
         }
+    case 'DragDrop':
+        return {
+            list: action.list
+        }
     default:
         return state
   }

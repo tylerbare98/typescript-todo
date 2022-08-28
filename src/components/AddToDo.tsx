@@ -14,6 +14,7 @@ const AddToDo: React.FC<{}> = (props) =>
     const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         var id = uuidv4();
+        setInput("");
         dispatch({
             type: 'AddToDo',
             label: input,
@@ -28,7 +29,7 @@ const AddToDo: React.FC<{}> = (props) =>
     //return
     return(
         <form onSubmit={submitHandler}>
-            <input onChange={changeHandler} type="text" placeholder="Create a new todo..."/ >
+            <input onChange={changeHandler} type="text" placeholder="Create a new todo..." value={input}/ >
             <input type="submit" value="Submit" className={styles.hideSubmit} />
         </form> 
     )
