@@ -20,9 +20,16 @@ const Todos: React.FC<{}> = (props) =>
         });
     }
 
+    const checkboxHandler = (id) =>
+    {
+        dispatch({
+            type: 'checkboxSelected',
+            id: id   
+        });
+    }
+
     function handleDragStart(e, startID) {
-        document.getElementById(startID)!.style.opacity = "0.4";  
-        let dragSrcElement = document.getElementById(startID);
+        document.getElementById(startID)!.style.opacity = "0.4";
 
         e.dataTransfer.effectAllowed = 'move';
         e.dataTransfer.setData('text/plain', startID)
@@ -78,22 +85,24 @@ const Todos: React.FC<{}> = (props) =>
     const createTodo = (todo) => {
         return(
             <li key={todo.id} 
-                id={todo.id} 
-                draggable="true" 
-                onDragStart={(e) => handleDragStart(e, todo.id)}
-                onDragOver={(e) => handleDragOver(e)}
-                onDragEnter={() => handleDragEnter(todo.id)}
-                onDragLeave={() => handleDragLeave(todo.id)}
-                onDragEnd={() => handleDragEnd(todo.id)}
-                onDrop={(e) => handleDrop(e, todo.id)}>
-                <span className={styles.mouse}>{todo.label}: {todo.id}</span>
+                    id={todo.id} 
+                    draggable="true" 
+                    onDragStart={(e) => handleDragStart(e, todo.id)}
+                    onDragOver={(e) => handleDragOver(e)}
+                    onDragEnter={() => handleDragEnter(todo.id)}
+                    onDragLeave={() => handleDragLeave(todo.id)}
+                    onDragEnd={() => handleDragEnd(todo.id)}
+                    onDrop={(e) => handleDrop(e, todo.id)}>
+                <input type="checkbox" 
+                    onClick={() => checkboxHandler(todo.id)}/>
+                <span className={styles.mouse}>{todo.label}</span>
                 <GrClose onClick={() => deleteHandler(todo.id)} />
             </li>
             
         )
     }
 
-    //jsx code to display todos
+    //jsx code to display list of todos
     let listEmpty = listState.list.length === 0;
     const todos = listState.list.map(createTodo)
     

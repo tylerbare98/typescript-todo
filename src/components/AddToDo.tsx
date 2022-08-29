@@ -18,7 +18,8 @@ const AddToDo: React.FC<{}> = (props) =>
         dispatch({
             type: 'AddToDo',
             label: input,
-            id: id   
+            id: id,
+            isChecked: false   
         });
     }
 
