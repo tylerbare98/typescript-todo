@@ -21,18 +21,15 @@ const Todos: React.FC<{}> = (props) =>
     }
 
     function handleDragStart(e, startID) {
-        // @ts-ignore: Object is possibly 'null'
-        document.getElementById(startID).style.opacity = "0.4";  
+        document.getElementById(startID)!.style.opacity = "0.4";  
         let dragSrcElement = document.getElementById(startID);
 
-        //send that startId to the drop function
         e.dataTransfer.effectAllowed = 'move';
         e.dataTransfer.setData('text/plain', startID)
     }
 
     function handleDragEnd(id) {
-        // @ts-ignore: Object is possibly 'null'
-        document.getElementById(id).style.opacity = "1";
+        document.getElementById(id)!.style.opacity = "1";
         
         document.getElementsByName('li').forEach(function (item)  {
             item.classList.remove(`${styles.over}`);
@@ -45,20 +42,17 @@ const Todos: React.FC<{}> = (props) =>
       }
     
     function handleDragEnter(id) {
-        // @ts-ignore: Object is possibly 'null'
-        document.getElementById(id).classList.add(`${styles.over}`);
+        document.getElementById(id)!.classList.add(`${styles.over}`);
     }
 
     function handleDragLeave(id) {
-        // @ts-ignore: Object is possibly 'null'
-        document.getElementById(id).classList.remove(`${styles.over}`);
+        document.getElementById(id)!.classList.remove(`${styles.over}`);
     }
 
     function handleDrop(e, endID) {
         e.preventDefault(); 
 
-        // @ts-ignore: Object is possibly 'null'
-        document.getElementById(endID).classList.remove(`${styles.over}`);
+        document.getElementById(endID)!.classList.remove(`${styles.over}`);
             
         const startID = e.dataTransfer.getData("text");
 
