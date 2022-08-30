@@ -1,7 +1,7 @@
 import styles from './CompletionStatusBar.module.css'
 import {useDispatch} from 'react-redux'
 
-const ItemsLeftBar: React.FC<{}> = () => {
+const CompletionStatusBar: React.FC<{}> = () => {
 
     //state
     const dispatch = useDispatch();
@@ -33,4 +33,4 @@ const ItemsLeftBar: React.FC<{}> = () => {
     )
 }
 
-export default ItemsLeftBar;
+export default CompletionStatusBar;

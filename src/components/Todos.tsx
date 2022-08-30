@@ -1,5 +1,6 @@
 import styles from './Todos.module.css'
 import ItemsLeftBar from './ItemsLeftBar'
+import CompletionStatusBar from './CompletionStatusBar'
 import todoState from '../models/todoState'
 import {useSelector, useDispatch} from 'react-redux'
 import {GrClose} from "react-icons/gr"
@@ -86,8 +87,10 @@ const Todos: React.FC<{}> = (props) =>
     //creates one of the todo elements
     const createTodo = (todo) => {
         return(
-            <li key={todo.id} 
-                    id={todo.id} 
+            <>
+            <div key={todo.id} 
+                    id={todo.id}
+                    className={styles.todo} 
                     draggable="true" 
                     onDragStart={(e) => handleDragStart(e, todo.id)}
                     onDragOver={(e) => handleDragOver(e)}
@@ -95,13 +98,18 @@ const Todos: React.FC<{}> = (props) =>
                     onDragLeave={() => handleDragLeave(todo.id)}
                     onDragEnd={() => handleDragEnd(todo.id)}
                     onDrop={(e) => handleDrop(e, todo.id)}>
-                <input type="checkbox"
-                    defaultChecked={todo.isChecked}
-                    onClick={() => checkboxHandler(todo.id)}/>
-                <span className={styles.mouse}>{todo.label}</span>
-                <GrClose onClick={() => deleteHandler(todo.id)} />
-            </li>
-            
+                <section>
+                    <input type="checkbox"
+                        defaultChecked={todo.isChecked}
+                        onClick={() => checkboxHandler(todo.id)}/>
+                    <span className={styles.label}>{todo.label}</span>
+                </section>
+                <GrClose
+                    className={styles.close} 
+                    onClick={() => deleteHandler(todo.id)} />
+            </div>
+            <hr></hr>
+            </>
         )
     }
 
@@ -133,11 +141,17 @@ const Todos: React.FC<{}> = (props) =>
     }
 
     
+        
+    
     return(
-        <>
+        <div className={styles.container}>
             {!listEmpty && todos}
-            <ItemsLeftBar length={length}/> 
-        </>
+            <div className={styles.footerBar}>
+                <ItemsLeftBar length={length}/>
+                <CompletionStatusBar />
+                <div>Clear Completed</div>
+            </div>
+        </div>
     )
 }
 

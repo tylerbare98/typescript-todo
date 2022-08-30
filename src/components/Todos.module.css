@@ -1,5 +1,6 @@
-.mouse{
+.label{
     cursor:move;
+    margin-left: 15px;
 }
 
 .over{
@@ -7,6 +8,33 @@
 
 }
 
+hr{
+    position: relative;
+    left: -20px;
+    width: calc(100% + 38px)
+}
+
 li{
     list-style: none;
+}
+
+.container{
+    width: 50%;
+    background-color: rgb(58, 56, 56);
+    padding: 20px;
+    font-size: larger;
+    margin: auto;
+    border-radius:5px;
+}
+
+.todo
+{
+    margin: 15px;
+    display:flex;
+    justify-content: space-between;
+}
+
+.footerBar{
+    display:flex;
+    justify-content: space-between;
 }

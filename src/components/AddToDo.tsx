@@ -29,8 +29,10 @@ const AddToDo: React.FC<{}> = (props) =>
     
     //return
     return(
-        <form onSubmit={submitHandler}>
-            <input onChange={changeHandler} type="text" placeholder="Create a new todo..." value={input}/ >
+        <form onSubmit={submitHandler} className={styles.container}>
+            <div className={styles.border}>
+                <input className={styles.inputField} onChange={changeHandler} type="text" placeholder="Create a new todo..." value={input}/ >
+            </div>
             <input type="submit" value="Submit" className={styles.hideSubmit} />
         </form> 
     )

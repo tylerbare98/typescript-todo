@@ -4,6 +4,8 @@ label > div{
 
 .labl {
     width: 400px;
+    margin-left:5px;
+    margin-right:5px;
 }
 .labl > input{ /* HIDE RADIO */
     visibility: hidden; /* Makes input not-clickable */
@@ -14,6 +16,5 @@ label > div{
     border:2px solid transparent;
 }
 .labl > input:checked + div{ /* (RADIO CHECKED) DIV STYLES */
-    background-color: #ffd6bb;
-    border: 1px solid #ff6600;
+    color: rgb(3, 127, 229);
 }

@@ -1,3 +1,22 @@
-.hideSubmit {
+.hideSubmit{
     display: none
+}
+
+.container{
+    text-align:center;
+    margin: 25px auto;
+}
+
+.inputField{
+    width:51%;
+    background-color: rgb(58, 56, 56);
+    border: none;
+    padding: 15px;
+    font-size: larger;
+    border-radius: 5px;
+}
+
+.inputField:focus{
+    outline: 5px dashed white;
+    outline-offset: 5px;
 }
