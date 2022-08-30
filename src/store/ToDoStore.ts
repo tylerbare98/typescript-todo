@@ -1,26 +1,31 @@
 import { createStore } from 'redux'
 import todoState from '../models/todoState'
 
+
 const initial:todoState = {
-    list: []
+    list: [],
+    completionStatus: "all" 
 }
 
 function ToDoList(state = initial, action) {
   switch (action.type) {
     case 'AddToDo':
         return {
-            list: [...state.list, {label: action.label, id: action.id, isChecked: action.isChecked}]   
+            list: [...state.list, {label: action.label, id: action.id, isChecked: action.isChecked}],
+            completionStatus: state.completionStatus  
         }
     case 'RemoveToDo':
         const updatedList = state.list.filter((item) => item.id !== action.id);
         return {
-            list: updatedList
+            list: updatedList,
+            completionStatus: state.completionStatus 
         }
     case 'DragDrop':
         return {
-            list: action.list
+            list: action.list,
+            completionStatus: state.completionStatus 
         }
-    case 'checkboxSelected':
+    case 'invertIsChecked':
         //find index of item that user toggled checkbox
         const index = state.list.findIndex(object => {
             return object.id === action.id
@@ -32,7 +37,13 @@ function ToDoList(state = initial, action) {
             newList[index].isChecked = !newList[index].isChecked;
         }
         return {
-            list: newList
+            list: newList,
+            completionStatus: state.completionStatus 
+        }
+    case "radioChanged":
+        return {
+            list: state.list,
+            completionStatus: action.status
         }
     default:
         return state

@@ -1,4 +1,5 @@
 import styles from './Todos.module.css'
+import ItemsLeftBar from './ItemsLeftBar'
 import todoState from '../models/todoState'
 import {useSelector, useDispatch} from 'react-redux'
 import {GrClose} from "react-icons/gr"
@@ -8,10 +9,10 @@ const Todos: React.FC<{}> = (props) =>
 {
 
     //state setup
-    const listState: todoState = useSelector((state: todoState) => state)
+    const storeState: todoState = useSelector((state: todoState) => state)
     const dispatch = useDispatch();
 
-    //handlers
+    //-------------------------------- vvvvv ------- handlers ---------------------------
     const deleteHandler = (id) =>
     {
         dispatch({
@@ -23,7 +24,7 @@ const Todos: React.FC<{}> = (props) =>
     const checkboxHandler = (id) =>
     {
         dispatch({
-            type: 'checkboxSelected',
+            type: 'invertIsChecked',
             id: id   
         });
     }
@@ -67,11 +68,11 @@ const Todos: React.FC<{}> = (props) =>
         if(startID !== endID)
         {
             //get indexes of two items to be swapped
-            const indexStart = listState.list.map(function(i) { return i.id; }).indexOf(startID);
-            const indexEnd = listState.list.map(function(i) { return i.id; }).indexOf(endID);
+            const indexStart = storeState.list.map(function(i) { return i.id; }).indexOf(startID);
+            const indexEnd = storeState.list.map(function(i) { return i.id; }).indexOf(endID);
             
             //swaps elements in new list then dispatches it
-            const newList = listState.list;
+            const newList = storeState.list;
             [newList[indexStart], newList[indexEnd]] = [newList[indexEnd], newList[indexStart]]
             dispatch({
                 type: 'DragDrop',
@@ -80,6 +81,7 @@ const Todos: React.FC<{}> = (props) =>
         }
         return false;
     }
+    //-------------------------------- ^^^^^ ------- handlers ---------------------------
 
     //creates one of the todo elements
     const createTodo = (todo) => {
@@ -93,7 +95,8 @@ const Todos: React.FC<{}> = (props) =>
                     onDragLeave={() => handleDragLeave(todo.id)}
                     onDragEnd={() => handleDragEnd(todo.id)}
                     onDrop={(e) => handleDrop(e, todo.id)}>
-                <input type="checkbox" 
+                <input type="checkbox"
+                    defaultChecked={todo.isChecked}
                     onClick={() => checkboxHandler(todo.id)}/>
                 <span className={styles.mouse}>{todo.label}</span>
                 <GrClose onClick={() => deleteHandler(todo.id)} />
@@ -102,19 +105,38 @@ const Todos: React.FC<{}> = (props) =>
         )
     }
 
-    //jsx code to display list of todos
-    let listEmpty = listState.list.length === 0;
-    const todos = listState.list.map(createTodo)
-    
-    //jsx code to display amount of items left
-    const length = listState.list.length
-    const itemsLeft = length === 1 ? <div>{length} item left</div> : <div>{length} items left</div>
+    //Conditionally render three different views: "all" | "active" | "compelete"
+    const completionStatus = storeState.completionStatus;
+    let listEmpty;
+    let todos;
+    let length;
+    let updatedList;
+    switch(completionStatus){
+        case 'all': //use list stored in store as is
+            listEmpty = storeState.list.length === 0;
+            length = storeState.list.length;
+            todos = storeState.list.map(createTodo)
+            break;
+        case 'active': //new list with only the items that are NOT checked
+            updatedList = storeState.list.filter((item) => item.isChecked === false);
+            listEmpty = updatedList.length === 0;
+            length = updatedList.length;
+            todos = updatedList.map(createTodo)
+            break;
+        case 'complete':  //new list with only the items that ARE checked
+            updatedList = storeState.list.filter((item) => item.isChecked === true);
+            listEmpty = updatedList.length === 0; 
+            length = updatedList.length;
+            todos = updatedList.map(createTodo)
+            console.log(storeState.list)
+            break; 
+    }
 
     
     return(
         <>
             {!listEmpty && todos}
-            {itemsLeft} 
+            <ItemsLeftBar length={length}/> 
         </>
     )
 }
