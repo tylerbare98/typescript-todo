@@ -40,10 +40,15 @@ function ToDoList(state = initial, action) {
             list: newList,
             completionStatus: state.completionStatus 
         }
-    case "radioChanged":
+    case "radioChanged": 
         return {
             list: state.list,
             completionStatus: action.status
+        }
+    case "clearCompleted": 
+        return {
+            list: action.list,
+            completionStatus: state.completionStatus
         }
     default:
         return state

@@ -4,6 +4,7 @@ import CompletionStatusBar from './CompletionStatusBar'
 import todoState from '../models/todoState'
 import {useSelector, useDispatch} from 'react-redux'
 import {GrClose} from "react-icons/gr"
+import ClearBar from './ClearBar'
 
 //This component displays all the todos and lets them be switched thorugh drag n drop
 const Todos: React.FC<{}> = (props) =>
@@ -144,14 +145,17 @@ const Todos: React.FC<{}> = (props) =>
         
     
     return(
+        <>
         <div className={styles.container}>
             {!listEmpty && todos}
             <div className={styles.footerBar}>
                 <ItemsLeftBar length={length}/>
                 <CompletionStatusBar />
-                <div>Clear Completed</div>
+                <ClearBar />
             </div>
         </div>
+        {!listEmpty && <h3 className={styles.note}>Drag and Drop to Reorder List</h3>}
+        </>
     )
 }
 
