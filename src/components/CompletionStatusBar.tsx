@@ -17,15 +17,15 @@ const CompletionStatusBar: React.FC<{}> = () => {
 
     return (
         <div className={styles.container}> 
-            <label className={styles.labl}>
+            <label className={styles.label}>
                 <input type="radio" name="radio" id="all" value="one_value" onClick={radioHandler} defaultChecked/>
                 <div>All</div>
             </label>
-            <label className={styles.labl}>
+            <label className={styles.label}>
                 <input type="radio" name="radio" id="active" onClick={radioHandler} value="another" />
                 <div>Active</div>
             </label>
-            <label className={styles.labl}>
+            <label className={styles.label}>
                 <input type="radio" name="radio" id="complete" onClick={radioHandler} value="another" />
                 <div>Complete</div>
             </label>

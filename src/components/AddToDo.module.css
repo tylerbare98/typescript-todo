@@ -8,6 +8,7 @@
 }
 
 .inputField{
+    min-width: 255px;
     width:51%;
     background-color: rgb(58, 56, 56);
     border: none;

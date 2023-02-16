@@ -2,19 +2,39 @@ label > div{
     display:inline-block
 }
 
-.labl {
-    width: 400px;
+.label {
+    width: 100%;
     margin-left:5px;
     margin-right:5px;
 }
-.labl > input{ /* HIDE RADIO */
+.label > input{ /* HIDE RADIO */
     visibility: hidden; /* Makes input not-clickable */
     position: absolute; /* Remove input from document flow */
 }
-.labl > input + div{ /* DIV STYLES */
+.label > input + div{ /* DIV STYLES */
     cursor:pointer;
     border:2px solid transparent;
 }
 .labl > input:checked + div{ /* (RADIO CHECKED) DIV STYLES */
     color: rgb(3, 127, 229);
+}
+
+@media (max-width: 820px) {
+    /* styles to apply when screen size is 1100px or less */
+    .container {
+      display: flex;
+      flex-direction: column;
+    }
+}
+
+.all{
+    color:white
+}
+
+.active{
+    color:white
+}
+
+.complete{
+    color:white
 }

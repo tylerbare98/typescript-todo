@@ -6,8 +6,6 @@ import image from './images/bg-desktop-dark.jpg'
 import styles from './App.module.css' 
 
 function App() {
-  
-
 
   return (
     <>
