@@ -15,7 +15,7 @@ label > div{
     cursor:pointer;
     border:2px solid transparent;
 }
-.labl > input:checked + div{ /* (RADIO CHECKED) DIV STYLES */
+.label > input:checked + div{ /* (RADIO CHECKED) DIV STYLES */
     color: rgb(3, 127, 229);
 }
 

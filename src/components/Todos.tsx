@@ -154,7 +154,7 @@ const Todos: React.FC<{}> = (props) =>
                 <ClearBar />
             </div>
         </div>
-        {!listEmpty && <h3 className={styles.note}>Drag and Drop to Reorder List</h3>}
+        {length >= 2 && <h3 className={styles.note}>Drag and Drop to Reorder List</h3>}
         </>
     )
 }

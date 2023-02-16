@@ -10,7 +10,7 @@ function App() {
   return (
     <>
     <img className={styles.image}src={image} alt="" />
-    <header>TODO</header>
+    <header>To-do List</header>
     <Provider store={store}>
       <AddToDo />
       <Todos/>

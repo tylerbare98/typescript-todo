@@ -15,6 +15,7 @@
     padding: 15px;
     font-size: larger;
     border-radius: 5px;
+    color:white;
 }
 
 .inputField:focus{
