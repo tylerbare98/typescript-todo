@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/typescript-todo/static/css/main.d9bc8821.css",
+    "main.js": "/typescript-todo/static/js/main.0743bdde.js",
+    "static/media/bg-desktop-dark.jpg": "/typescript-todo/static/media/bg-desktop-dark.73e47dbb723ebc772ef0.jpg",
+    "index.html": "/typescript-todo/index.html",
+    "main.d9bc8821.css.map": "/typescript-todo/static/css/main.d9bc8821.css.map",
+    "main.0743bdde.js.map": "/typescript-todo/static/js/main.0743bdde.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d9bc8821.css",
+    "static/js/main.0743bdde.js"
+  ]
+}
